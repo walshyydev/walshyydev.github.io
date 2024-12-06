@@ -1,447 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🫙 Tips 🫙</title>
-    <link rel="icon" type="image/png" href="starbucks.png">
-    <style>
-        body {
-            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 15px;
-            background-color: #f9f9f9;
-            color: #2d2d2d;
-        }
-        .app-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        h1, h2 {
-            color: #00704A;
-            text-align: center;
-        }
-        #storeInfo {
-            text-align: center;
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #4a4a4a;
-        }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
-            margin-bottom: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            background-color: #fff;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-        th {
-            background-color: #00704A;
-            color: white;
-            font-weight: normal;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-        input[type="text"]:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: #00704A;
-            box-shadow: 0 0 0 2px rgba(0,112,74,0.2);
-        }
-        button {
-            padding: 12px 24px;
-            background-color: #00704A;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        button:hover {
-            background-color: #005c3e;
-            transform: translateY(-2px);
-        }
-        #totalTips {
-            font-size: 1.2em;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-        #totalTips:focus {
-            border-color: #00704A;
-            box-shadow: 0 0 0 2px rgba(0,112,74,0.2);
-        }
-        .delete-btn {
-            background-color: #00704A;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .delete-btn:hover {
-            background-color: #005c3e;
-        }
-        #summary {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        #summary h2 {
-            margin-top: 0;
-            color: #00704A;
-        }
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-        .summary-name {
-            font-weight: 600;
-        }
-        .summary-details {
-            color: #4a4a4a;
-        }
-        body.dark-mode .summary-details {
-            color: #00A862; /* Light Starbucks green for better visibility in dark mode */
-        }
-        body.dark-mode .summary-item {
-            border-bottom: 1px solid #3a3a3a; /* Darker line for separation in dark mode */
-        }
-        .hourly-rate {
-            background-color: #f0fff0; /* Changed from #f0f8ff to a light green */
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #00704A;
-        }
-        #credit {
-            text-align: center;
-            font-size: 0.8em;
-            color: #777;
-            margin-top: 40px;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .app-container {
-                padding: 15px;
-                border-radius: 16px;
-            }
-            th, td {
-                padding: 8px;
-                font-size: 14px;
-            }
-            input[type="text"], input[type="number"] {
-                padding: 8px;
-                font-size: 14px;
-            }
-            button {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-            #totalTips {
-                font-size: 1em;
-                padding: 8px;
-            }
-        }
-        .changelog-btn {
-            background-color: #00704A;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 14px;
-        }
-        .changelog-btn:hover {
-            background-color: #005c3e;
-        }
-        @media (max-width: 600px) {
-            .changelog-btn {
-                position: static;
-                display: block;
-                margin: 10px auto;
-            }
-        }
-        .mode-toggle {
-            position: absolute;
-            top: 10px;
-            right: 120px;
-            background-color: #00704A;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .mode-toggle:hover {
-            background-color: #005c3e;
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #1e1e1e;
-            color: #f0f0f0;
-        }
-
-        body.dark-mode .app-container {
-            background-color: rgba(30, 30, 30, 0.8);
-        }
-
-        body.dark-mode h1, body.dark-mode h2 {
-            color: #00A862; /* Lighter Starbucks green for better visibility in dark mode */
-        }
-
-        body.dark-mode th, body.dark-mode td {
-            background-color: #2d2d2d;
-            color: #f0f0f0;
-        }
-
-        body.dark-mode th {
-            background-color: #00704A;
-            color: white;
-        }
-
-        body.dark-mode input[type="text"], body.dark-mode input[type="number"] {
-            background-color: #3d3d3d;
-            color: #f0f0f0;
-            border-color: #555;
-        }
-
-        body.dark-mode #summary {
-            background-color: #2d2d2d;
-        }
-
-        body.dark-mode .hourly-rate {
-            background-color: #004C33; /* Changed from #003366 to a darker Starbucks green */
-            color: #00A862; /* Lighter Starbucks green for better visibility in dark mode */
-        }
-
-        body.dark-mode #credit {
-            color: #aaa;
-        }
-
-        body.dark-mode .delete-btn {
-            background-color: #00704A;
-            color: white;
-        }
-
-        body.dark-mode .delete-btn:hover {
-            background-color: #005c3e;
-        }
-
-        @media (max-width: 600px) {
-            .mode-toggle {
-                position: static;
-                display: block;
-                margin: 10px auto;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="app-container">
-        <h1>🫙 Tips 🫙</h1>
-        <h2>Starbucks Partner Tips Calculator</h2>
-        <div id="storeInfo">Store #69600 - 139 Endicott St, Danvers MA 01923</div>
-        <button id="modeToggle" class="mode-toggle">Dark Mode</button>
-        <button onclick="window.location.href='changelog.html'" class="changelog-btn">Changelog</button>
-        <table id="tipTable">
-            <thead>
-                <tr>
-                    <th>Partner Name</th>
-                    <th>Total Tippable Hours</th>
-                    <th>Tips</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <button onclick="addRow()">Add Barista</button>
-        <button onclick="calculateTips()">Calculate Tips</button>
-        <p>Total Tips: $<input type="number" id="totalTips" min="0" step="1" placeholder="Enter total tips"></p>
-        <div id="summary"></div>
-
-        <div id="credit">Created by Starbucks Barista William Walsh</div>
-    </div>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Partner Hub | Tips Calculator</title>
+    <link rel="icon" type="image/png" href="assets/sbuxlogo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        function addRow() {
-            const table = document.getElementById("tipTable").getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <td><input type="text" placeholder="Enter partner name" class="nameInput"></td>
-                <td><input type="number" min="0" step="0.5" placeholder="Enter tippable hours" class="hoursInput"></td>
-                <td>$0.00</td>
-                <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
-            `;
-            
-            // Add event listeners to the new inputs
-            addInputListeners(newRow);
-        }
-
-        function addInputListeners(row) {
-            const inputs = row.querySelectorAll('input');
-            inputs.forEach((input, index) => {
-                input.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        if (index < inputs.length - 1) {
-                            // Move to the next input in the same row
-                            inputs[index + 1].focus();
-                        } else if (row.nextElementSibling) {
-                            // Move to the first input of the next row
-                            row.nextElementSibling.querySelector('input').focus();
-                        } else {
-                            // If it's the last input of the last row
-                            addRow();
-                            const newRow = row.parentNode.lastElementChild;
-                            newRow.querySelector('input').focus();
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        starbucks: {
+                            green: '#00704A',
+                            dark: '#1E3932',
+                            gold: '#CBA258',
+                            accent: '#D4E9E2',
+                            light: '#f1f8f6'
                         }
                     }
-                });
-            });
+                }
+            }
         }
-
-        function deleteRow(btn) {
-            const row = btn.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
-
-        function calculateTips() {
-            const table = document.getElementById("tipTable").getElementsByTagName('tbody')[0];
-            const rows = table.getElementsByTagName('tr');
-            const totalTips = Math.round(parseFloat(document.getElementById("totalTips").value)) || 0;
-
-            let totalHours = 0;
-            for (let row of rows) {
-                const hours = parseFloat(row.cells[1].getElementsByTagName('input')[0].value) || 0;
-                totalHours += hours;
-            }
-
-            // Calculate the full hourly tip rate with up to 5 decimal places
-            const fullHourlyTipRate = totalHours > 0 ? (totalTips / totalHours).toFixed(5).replace(/\.?0+$/, '') : '0';
-            
-            // Remove the truncatedHourlyTipRate calculation
-
-            let summaryHTML = `<h2>Tip Distribution Summary</h2>`;
-            summaryHTML += `<div class="hourly-rate">
-                Full Hourly Tip Rate: $${fullHourlyTipRate}/hr
-            </div>`;
-
-            for (let row of rows) {
-                const name = row.cells[0].getElementsByTagName('input')[0].value || "Unnamed";
-                const hours = parseFloat(row.cells[1].getElementsByTagName('input')[0].value) || 0;
-                const fullTipShare = (hours * parseFloat(fullHourlyTipRate)).toFixed(2);
-                const truncatedTipShare = Math.round(hours * parseFloat(fullHourlyTipRate));
-
-                row.cells[2].textContent = `$${truncatedTipShare}`;
-                summaryHTML += `
-                    <div class="summary-item">
-                        <span class="summary-name">${name}</span>
-                        <span class="summary-details">
-                            $${truncatedTipShare} (${hours} hours)
-                        </span>
-                    </div>`;
-            }
-
-            document.getElementById("summary").innerHTML = summaryHTML;
-        }
-
-        // Add initial rows and set up event listeners
-        addRow();
-        addRow();
-
-        // Add event listeners to existing rows
-        const existingRows = document.querySelectorAll('#tipTable tbody tr');
-        existingRows.forEach(row => addInputListeners(row));
-
-        // Add event listener to totalTips input
-        document.getElementById('totalTips').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                calculateTips();
-            }
-        });
-
-        const modeToggle = document.getElementById('modeToggle');
-        const body = document.body;
-
-        // Function to set the mode
-        function setMode(mode) {
-            if (mode === 'dark') {
-                body.classList.add('dark-mode');
-                modeToggle.textContent = 'Light Mode';
-            } else {
-                body.classList.remove('dark-mode');
-                modeToggle.textContent = 'Dark Mode';
-            }
-            localStorage.setItem('mode', mode);
-        }
-
-        // Check for saved mode on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedMode = localStorage.getItem('mode');
-            if (savedMode) {
-                setMode(savedMode);
-            }
-        });
-
-        modeToggle.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                setMode('light');
-            } else {
-                setMode('dark');
-            }
-        });
-
-        // Update the changelog button to include the current mode
-        const changelogBtn = document.querySelector('.changelog-btn');
-        changelogBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const currentMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            window.location.href = `changelog.html?mode=${currentMode}`;
-        });
     </script>
+</head>
+<body class="h-full bg-starbucks-light dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md fixed top-0 w-full z-50 transition-colors duration-200">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="assets/sbuxlogo.png" alt="Starbucks Logo" class="h-12 w-12 object-contain">
+                <div class="flex flex-col">
+                    <span class="text-starbucks-dark dark:text-white font-bold text-xl tracking-tight">Partner Hub</span>
+                    <span class="text-starbucks-green dark:text-starbucks-accent text-sm">Tips Calculator</span>
+                </div>
+            </div>
+            <button id="themeToggle" class="text-starbucks-green dark:text-starbucks-accent hover:text-opacity-80 transition-colors p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="relative h-64 mt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-starbucks-dark dark:bg-gray-800">
+            <div id="heroParallax" class="parallax w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+            </div>
+        </div>
+        <div class="relative container mx-auto px-4 h-full flex items-center">
+            <div class="text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">Tips Calculator</h1>
+                <p class="text-starbucks-accent opacity-90">Calculate and distribute tips fairly among partners</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 relative -mt-16">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Add Partner Card -->
+            <div class="glass rounded-xl p-6 shadow-lg animate-fade-in dark:bg-gray-800 dark:border-gray-700">
+                <h2 class="card-header">
+                    <i class="fas fa-user-plus text-starbucks-green dark:text-starbucks-accent"></i>
+                    Add Partner
+                </h2>
+                <form id="addPartnerForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Partner Name</label>
+                        <input type="text" id="partnerName" class="mt-1 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tippable Hours</label>
+                        <input type="number" id="partnerHours" step="0.01" min="0" class="mt-1 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                    </div>
+                    <button type="submit" class="w-full bg-starbucks-green dark:bg-starbucks-dark text-white hover:bg-opacity-90 transition-colors">
+                        Add Partner
+                    </button>
+                </form>
+            </div>
+
+            <!-- Total Tips Card -->
+            <div class="glass rounded-xl p-6 shadow-lg animate-fade-in dark:bg-gray-800 dark:border-gray-700">
+                <h2 class="card-header">
+                    <i class="fas fa-dollar-sign text-starbucks-green dark:text-starbucks-accent"></i>
+                    Total Tips
+                </h2>
+                <form id="totalTipsForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Total Tips Amount</label>
+                        <input type="number" id="totalTips" step="0.01" min="0" class="mt-1 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                    </div>
+                    <button type="submit" class="w-full bg-starbucks-green dark:bg-starbucks-dark text-white hover:bg-opacity-90 transition-colors">
+                        Calculate Tips
+                    </button>
+                </form>
+            </div>
+
+            <!-- Partners List Card -->
+            <div class="glass rounded-xl p-6 shadow-lg animate-fade-in dark:bg-gray-800 dark:border-gray-700">
+                <h2 class="card-header">
+                    <i class="fas fa-users text-starbucks-green dark:text-starbucks-accent"></i>
+                    Partners List
+                </h2>
+                <div id="partnersList" class="space-y-2">
+                    <!-- Partners will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Math Breakdown Section -->
+        <div id="mathBreakdown" class="glass rounded-xl p-6 shadow-lg mt-6 hidden animate-fade-in dark:bg-gray-800 dark:border-gray-700">
+            <h2 class="card-header">
+                <i class="fas fa-calculator text-starbucks-green dark:text-starbucks-accent"></i>
+                Tips Breakdown
+            </h2>
+            <div class="space-y-4">
+                <div class="tips-calculation">
+                    <!-- Tips calculations will be shown here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 mt-12 py-6 text-center text-sm text-gray-600 dark:text-gray-400 transition-colors duration-200">
+        <p>Made by William Walsh</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

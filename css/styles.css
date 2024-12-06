@@ -1,0 +1,389 @@
+/* Base styles */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-family: 'SoDoSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Starbucks specific styles */
+:root {
+    --starbucks-green: #00704A;
+    --starbucks-dark: #1e3932;
+    --starbucks-gold: #CBA258;
+    --starbucks-accent: #D4E9E2;
+    --starbucks-light: #f1f8f6;
+}
+
+/* Dark mode colors */
+:root[data-theme="dark"] {
+    --starbucks-accent: #2d4f46;
+    --starbucks-light: #1a1a1a;
+    color-scheme: dark;
+}
+
+/* Global dark mode styles */
+.dark {
+    color-scheme: dark;
+}
+
+.dark body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Glass effect */
+.glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 112, 74, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(30, 57, 50, 0.1);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.dark .glass {
+    background: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="number"],
+select {
+    font-size: 16px;
+    padding: 12px 16px;
+    border: 2px solid var(--starbucks-accent);
+    border-radius: 8px !important;
+    background-color: var(--starbucks-light);
+    transition: all 0.3s ease;
+}
+
+.dark input[type="text"],
+.dark input[type="number"],
+.dark select {
+    background-color: #2d3748;
+    border-color: #4a5568;
+    color: white;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--starbucks-green);
+    background-color: white;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 112, 74, 0.1);
+}
+
+.dark input[type="text"]:focus,
+.dark input[type="number"]:focus,
+.dark select:focus {
+    background-color: #2d3748;
+    border-color: var(--starbucks-green);
+    box-shadow: 0 0 0 4px rgba(0, 112, 74, 0.2);
+}
+
+/* Partner card */
+.partner-card {
+    background: var(--starbucks-light);
+    border: 1px solid rgba(0, 112, 74, 0.1);
+    border-radius: 16px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dark .partner-card {
+    background: #2d3748;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Card Headers */
+.card-header {
+    color: var(--starbucks-dark);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.dark .card-header {
+    color: white;
+}
+
+/* Buttons */
+button {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 18px 24px;
+    border-radius: 500px !important;
+    transition: all 0.3s ease;
+}
+
+.dark button {
+    background-color: var(--starbucks-dark);
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Theme toggle */
+#themeToggle {
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+#themeToggle i {
+    transition: transform 0.3s ease;
+}
+
+#themeToggle:active i {
+    transform: rotate(-30deg);
+}
+
+/* Notifications */
+.notification {
+    transition: all 0.3s ease;
+}
+
+.dark .notification {
+    background-color: #2d3748;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--starbucks-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--starbucks-green);
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: var(--starbucks-accent);
+}
+
+/* Custom animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.loading {
+    background: linear-gradient(90deg, 
+        var(--starbucks-light) 25%, 
+        var(--starbucks-accent) 50%, 
+        var(--starbucks-light) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Hero section parallax */
+.parallax {
+    background-image: url('https://source.unsplash.com/random/1920x1080/?coffee,cafe');
+    background-size: cover;
+    background-position: center;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+/* Math breakdown animation */
+.math-step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.math-step.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Math breakdown paper style */
+.math-paper {
+    background: #fff;
+    background-image: 
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    border-radius: 8px;
+    box-shadow: 
+        0 1px 3px rgba(0,0,0,0.12),
+        0 1px 2px rgba(0,0,0,0.24);
+    padding: 20px 20px 20px 100px;
+    position: relative;
+}
+
+.math-paper::before {
+    content: '';
+    position: absolute;
+    left: 79px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #db4437;
+}
+
+.math-step {
+    font-family: 'Courier New', monospace;
+    margin-bottom: 1.2em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.math-step.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.math-operation {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.math-symbol {
+    color: #1a73e8;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.math-line {
+    border-bottom: 2px solid #1a73e8;
+    margin: 0.5em 0;
+}
+
+.math-result {
+    color: #0b8043;
+    font-weight: bold;
+    margin-top: 0.5em;
+    padding-left: 2em;
+}
+
+.math-highlight {
+    background: rgba(251, 233, 131, 0.4);
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+/* Partner list text color for light/dark modes */
+.partner-list {
+    color: #1e3932; /* Dark color for light mode */
+}
+
+[data-theme="dark"] .partner-list {
+    color: #ffffff; /* White color for dark mode */
+}
+
+/* Prevent overflow issues */
+.overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Handwritten effect for partner names */
+.partner-name {
+    font-family: 'Segoe Print', 'Bradley Hand', cursive;
+}
+
+/* Fix for mobile viewport height */
+@supports (-webkit-touch-callout: none) {
+    .h-screen {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Ensure inputs don't zoom on mobile */
+input[type="text"],
+input[type="number"],
+select {
+    font-size: 16px;
+    max-width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0.5rem;
+}
+
+/* Touch-friendly hover states */
+@media (hover: hover) {
+    .partner-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(30, 57, 50, 0.1);
+    }
+    
+    button:hover {
+        background-color: #005c3e;
+        transform: translateY(-2px);
+    }
+}
