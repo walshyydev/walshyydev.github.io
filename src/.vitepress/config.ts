@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Walshy',
   description: 'Your gateway to Development, Gaming, AI, and Tech',
+  base: '/walshyydev.github.io/',
   appearance: 'dark',
   themeConfig: {
     logo: '/logo.png',
