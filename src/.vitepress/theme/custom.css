@@ -1,0 +1,26 @@
+:root {
+  --vp-code-block-bg: #1e1e1e;
+}
+
+.dark {
+  --vp-code-block-bg: #1e1e1e;
+}
+
+div[class*='language-'] {
+  position: relative;
+  margin: 1rem 0;
+  background-color: var(--vp-code-block-bg);
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+div[class*='language-'] code {
+  color: #fff;
+  padding: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+div[class*='language-'] pre {
+  margin: 0;
+  padding: 1rem 0;
+}
